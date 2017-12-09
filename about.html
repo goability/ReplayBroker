@@ -1,0 +1,158 @@
+<html>
+<head>
+  <title>Playback Broker - About</title>
+  <style>
+    table, td, tr { border: 1px solid; border-radius: 5px;}
+    table {
+      width:100%;
+      background-color: silver;
+      font-size: 14;
+      font-weight: normal;
+      border-radius: 5px;
+    }
+    th{ text-align: center;}
+  </style>
+</head>
+<body>
+  <h1>Image Playback Broker Objectives</h1>
+  <p>
+    The Image Playback Broker is a Node.js application that is designed to 'broker' incoming client requests to the Playback Service Engine.
+    <br />
+    The following commands are provided, some of which have supporting parameters.  To send a command, the standard format is:  /COMMANDNAME?param1=value
+  </p>
+  <p>
+    <h2>Examples: </h2>
+  </p>
+  <p>
+    These are a few examples to showcase the REST API provided by the REPLAY broker.  The full list is shown below.
+    <br />
+    <ul>
+      <li>
+         http://127.0.0.1/REPLAY_RANGE?Camera=1Range=1225170600-1225170800&skipsecs=3
+      </li>
+      <li>
+        http://127.0.0.1/REPLAY_RANGE?Cameras=1,2,5&Range=1225170600-1225170800&skipsecs=3&repeat
+      </li>
+    </ul>
+  </p>
+  <div>
+    <h2>REPLAY COMMANDS</h2>
+    <table>
+      <tr>
+        <th>
+          Command Name
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Parameters
+        </th>
+        <th>
+          Reply
+        </th>
+      </tr>
+      <tr>
+        <td>ABOUT</td>
+        <td>Show this page which summarizes commands.</td>
+        <td>
+          No additional Parameters
+        </td>
+        <td>This page</td>
+      </tr>
+      <tr>
+        <td>REPLAY</td>
+        <td>Request a range of images to be shown.</td>
+        <td>
+          <table style="border:0;">
+            <tr>
+              <th>
+                Camera
+              </th>
+              <td>
+                one number: 1,2,..., 7
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Cameras
+              </th>
+              <td>
+                csv: 1,2,5
+              </td>
+            </tr>
+            <tr>
+              <th>
+                DateRange
+              </th>
+              <td>
+                MMDDYYhhmmss
+              </td>
+            </tr>
+
+
+            <tr>
+              <th>
+                Skipsecs
+              </th>
+              <td>
+                1,2,..., 3600
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Skipmins
+              </th>
+              <td>
+                1,2,..., 1440
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Skiphours
+              </th>
+              <td>
+                1,2,..., 24
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Skipdays
+              </th>
+              <td>
+                1,2,..., n
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Repeat
+              </th>
+              <td>
+                none
+              </td>
+            </tr>
+          </table>
+
+
+        </td>
+        <td style="vertical-align: top; text-align: left;">
+          <span style="font-weight: bold;">JSON</span> is returned to requestor<br /><br />
+          [ <br />
+          {<br />
+          &emsp;    imageIndex: 0,<br />
+          &emsp;    imageURL: 'http://domain/pathtoImage1.jpg',<br />
+          &emsp;    imageDate: 'Dec 25, 8:00a.m.  2017'<br />
+            },<br />
+            {<br />
+          &emsp;    imageIndex: 1,<br />
+          &emsp;    imageURL: 'http://domain/pathtoImage2.jpg',<br />
+          &emsp;    imageDate: 'Dec 25, 8:03a.m.  2017'<br />
+            }<br />
+          ]
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>
